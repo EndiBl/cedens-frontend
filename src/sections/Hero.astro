@@ -1,0 +1,52 @@
+---
+import Button from "@/components/Button.astro"
+---
+<section>
+  <article>
+    <div>
+      <h1>Aquí, <span>tu sonrisa</span> es nuestra prioridad</h1>
+      <p>Nuestra pasión es cuidar de tu sonrisa. En Cedens, cada tratamiento está adaptado a tus necesidades específicas, asegurando resultados que no solo mejorarán tu salud dental, sino también tu bienestar general.</p>
+      <Button label="Agenda una cita" variant="secondary" />
+    </div>
+    <img src="/img/hero-image.png" alt="Imagen de una odontóloga sosteniendo sus herramientas">
+  </article>
+
+</section>
+
+<style>
+  section {
+    background-color: var(--color-primary);
+
+  }
+  article {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color-primary);
+    padding: 16px 64px;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1440px;
+  }
+  div {
+    max-width: 620px;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+  h1 {
+    font-size: var(--text-6xl);
+    color: var(--text-color-secondary);
+  }
+  span {
+    color: var(--color-accent);
+  }
+  p {
+    font-size: var(--text-base);
+    color: var(--text-color-secondary);
+    margin-block: 32px;
+  }
+  img {
+    width: 340px;
+    height: 430px;
+    flex-shrink: 0;
+  }
+</style>

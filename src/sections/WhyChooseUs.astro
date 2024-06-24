@@ -1,0 +1,85 @@
+---
+  const whyChooseUsItems = [
+    {
+      title: 'Experiencia comprobada',
+      description: 'Más de 15 años de experiencia en proporcionar cuidados dentales de calidad.',
+      icon: 'clock'
+    },
+    {
+      title: 'Experiencia comprobada',
+      description: 'Más de 15 años de experiencia en proporcionar cuidados dentales de calidad.',
+      icon: 'clock'
+    },
+    {
+      title: 'Experiencia comprobada',
+      description: 'Más de 15 años de experiencia en proporcionar cuidados dentales de calidad.',
+      icon: 'clock'
+    },
+    {
+      title: 'Experiencia comprobada',
+      description: 'Más de 15 años de experiencia en proporcionar cuidados dentales de calidad.',
+      icon: 'clock'
+    },
+    {
+      title: 'Experiencia comprobada',
+      description: 'Más de 15 años de experiencia en proporcionar cuidados dentales de calidad.',
+      icon: 'clock'
+    },
+    {
+      title: 'Experiencia comprobada',
+      description: 'Más de 15 años de experiencia en proporcionar cuidados dentales de calidad.',
+      icon: 'clock'
+    },
+  ];
+---
+
+<section>
+  <h2>¿Por qué <span>escogernos</span>?</h2>
+
+    <article>
+      {
+        whyChooseUsItems.map(({ title, description }) => (
+        <div>
+          <h3>{ title }</h3>
+          <p>{ description }</p>
+        </div>
+        ))
+      }
+    </article>
+</section>
+
+<style>
+  section {
+    padding: 32px 64px;
+  }
+  article {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding: 16px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  div {
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  h2 {
+    font-size: var(--text-5xl);
+    font-weight: 600;
+    text-align: center;
+  }
+  span {
+    color: var(--color-secondary);
+  }
+  h3 {
+    font-weight: 600;
+    font-size: var(--text-xl);
+  }
+  p {
+    font-size: var(--text-base);
+  }
+
+</style>

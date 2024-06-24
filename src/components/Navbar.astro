@@ -1,0 +1,55 @@
+---
+import Button from "./Button.astro";
+
+  const navbarElements = [
+    { text: 'Inicio' },
+    { text: 'Nosotros' },
+    { text: 'Servicios' },
+    { text: 'Galería de sonrisas' },
+  ];
+---
+
+<header>
+  <nav>
+    <picture>
+      <source srcset="/img/logo-cedens2.avif" type="image/avif">
+      <img src="/img/logo-cedens2.png" alt="Logo de Cedens">
+    </picture>
+    <ul>
+      {
+        navbarElements.map(({ text }) => (
+          <li><a href="">{ text }</a></li>
+        ))
+      }
+    </ul>
+    <Button label="Agenda una cita" variant="primary" />
+  </nav>
+</header>
+
+<style>
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 64px;
+  }
+  ul {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  li {
+    font-size: var(--text-base);
+  }
+  img, source {
+    width: 180px;
+    aspect-ratio: 4 / 1.5;
+  }
+  a {
+    text-decoration: none;
+    color: var(--text-color-primary);
+  }
+  a:hover {
+    color: var(--color-primary);
+  }
+</style>

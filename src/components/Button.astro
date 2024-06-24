@@ -1,0 +1,29 @@
+---
+  interface Props {
+    label: string,
+    variant: 'primary' | 'secondary'
+  }
+
+  const { label, variant } = Astro.props;
+---
+
+<button class={variant}>{label}</button>
+
+<style>
+  button {
+    padding: 12px;
+    border-radius: 8px;
+    font-size: var(--text-base);
+    font-family: inherit;
+  }
+  .primary {
+    background-color: var(--color-primary);
+    color: var(--color-tertiary);
+    border: 0;
+  }
+  .secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-tertiary);
+    border: 0;
+  }
+</style>
