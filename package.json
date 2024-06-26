@@ -13,6 +13,7 @@
     "@astrojs/check": "^0.7.0",
     "@fontsource-variable/montserrat": "^5.0.19",
     "astro": "^4.11.0",
+    "swiper": "^11.1.4",
     "typescript": "^5.5.2"
   }
 }

@@ -1,0 +1,78 @@
+---
+import type { Testimonial } from '@/types/Testimonial'
+import StarFilledIcon from '@/icons/StarFilled.astro';
+import StarHalfFilledIcon from '@/icons/StarHalfFilled.astro';
+import StarIcon from '@/icons/Star.astro';
+
+interface Props {
+  testimonial: Testimonial
+}
+
+const { testimonial } = Astro.props;
+const { author, content, imageUrl, starsNumber } = testimonial;
+
+const fullStars = Math.floor(starsNumber);
+const hasHalfStar = starsNumber % 1 >= 0.5;
+const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+---
+
+<article class="testimonial">
+  <div class="testimonial__header">
+    <img src={ imageUrl } alt={ `Foto de ${ author }` }>
+    <div class="testimonial__author-stars">
+      <h3 class="testimonial__author">{ author }</h3>
+      <div>
+        {
+          Array.from({ length: fullStars }, (_, i) => (
+              <StarFilledIcon key={`full-${i}`} />
+            ))}
+            {hasHalfStar && <StarHalfFilledIcon key="half" />
+        }
+        {
+          Array.from({ length: emptyStars }, (_, i) => (
+            <StarIcon key={`empty-${i}`} />
+          ))
+        }
+      </div>
+
+    </div>
+  </div>
+  <p class="testimonial__content">{ content }</p>
+</article>
+
+<style>
+  .testimonial {
+    background-color: var(--color-tertiary);
+    border-radius: 20px;
+    padding: 32px;
+  }
+  .testimonial__header {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  .testimonial__author-stars {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  .testimonial__content {
+    font-size: var(--text-base-font-size);
+    line-height: var(--text-base-line-height);
+  }
+
+  @media (min-width: 960px) {
+    .testimonial__header {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      flex-direction: row;
+    }
+    .testimonial__author-stars {
+      align-items: flex-start;
+    }
+  }
+</style>

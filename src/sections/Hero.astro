@@ -6,7 +6,9 @@ import Button from "@/components/Button.astro"
     <div class="hero-content__container">
       <h1 class="hero-content__title">Aquí, <span class="hero-content__title hero-content__title--accent">tu sonrisa</span> es nuestra prioridad</h1>
       <p class="hero-content__paragraph">Nuestra pasión es cuidar de tu sonrisa. En Cedens, cada tratamiento está adaptado a tus necesidades específicas, asegurando resultados que no solo mejorarán tu salud dental, sino también tu bienestar general.</p>
-      <Button label="Agenda una cita" variant="secondary" />
+      <div class="hero-content__button">
+        <Button label="Agenda una cita" variant="secondary" />
+      </div>
     </div>
     <img class="hero-content__img" src="/img/hero-image.png" alt="Imagen de una odontóloga sosteniendo sus herramientas">
   </article>
@@ -15,21 +17,24 @@ import Button from "@/components/Button.astro"
 
 <style>
   .container {
-    padding: 80px 64px;
+    padding: 40px 32px;
     background-color: var(--color-primary);
   }
   .hero-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-direction: column;
     background-color: var(--color-primary);
     align-items: center;
     margin: 0 auto;
     max-width: 1440px;
+    gap: 32px;
   }
   .hero-content__title {
-    font-size: var(--text-6xl-font-size);
-    line-height: 5rem;
+    font-size: var(--text-4xl-font-size);
+    line-height: var(--text-4xl-line-height);
     color: var(--text-color-secondary);
+    text-align: center;
   }
   .hero-content__title--accent {
     color: var(--color-accent);
@@ -44,10 +49,36 @@ import Button from "@/components/Button.astro"
     line-height: var(--text-lg-line-height);
     color: var(--text-color-secondary);
     margin-block: 32px;
+    text-align: center;
   }
   .hero-content__img {
-    width: 340px;
-    height: 430px;
+    width: 310px;
+    height: 400px;
     flex-shrink: 0;
+  }
+  .hero-content__button {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (min-width: 960px) {
+    .container {
+      padding: 80px 64px;
+    }
+    .hero-content {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .hero-content__title {
+      font-size: var(--text-6xl-font-size);
+      line-height: 5rem;
+      text-align: left;
+    }
+    .hero-content__paragraph {
+      text-align: left;
+    }
+    .hero-content__button {
+      justify-content: left;
+    }
   }
 </style>

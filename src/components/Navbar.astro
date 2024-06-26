@@ -22,7 +22,9 @@ import Button from "./Button.astro";
         ))
       }
     </ul>
-    <Button label="Agenda una cita" variant="primary" />
+    <div class="button">
+      <Button class:list={ ['button'] } label="Agenda una cita" variant="primary" />
+    </div>
   </nav>
 
 <style>
@@ -37,6 +39,9 @@ import Button from "./Button.astro";
     gap: 16px;
     align-items: center;
   }
+  ul, .button  {
+    display: none;
+  }
   li {
     font-size: var(--text-base);
   }
@@ -50,5 +55,15 @@ import Button from "./Button.astro";
   }
   a:hover {
     color: var(--color-primary);
+  }
+
+  @media (min-width: 960px) {
+    ul {
+      display: flex;
+    }
+    
+    .button  {
+      display: unset;
+    }
   }
 </style>
