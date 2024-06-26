@@ -1,0 +1,33 @@
+---
+import type { TeamMember } from '@/types/TeamMember';
+
+interface Props {
+  teamMember: TeamMember
+}
+
+const { teamMember } = Astro.props;
+const { name, imageUrl} = teamMember;
+---
+
+<article class="team-member">
+    <img src={ imageUrl } alt={ `Foto de ${ name }` }>
+    <h3 class="team-member__name">{ name }</h3>
+</article>
+
+<style>
+  .team-member {
+    background-color: var(--color-tertiary);
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .team-member__name {
+    text-align: center;
+  }
+
+  @media (min-width: 960px) {
+
+  }
+</style>
