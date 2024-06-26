@@ -1,50 +1,51 @@
 ---
 import Button from "@/components/Button.astro"
 ---
-<section>
-  <article>
-    <div>
-      <h1>Aquí, <span>tu sonrisa</span> es nuestra prioridad</h1>
-      <p>Nuestra pasión es cuidar de tu sonrisa. En Cedens, cada tratamiento está adaptado a tus necesidades específicas, asegurando resultados que no solo mejorarán tu salud dental, sino también tu bienestar general.</p>
+<section class="container">
+  <article class="hero-content">
+    <div class="hero-content__container">
+      <h1 class="hero-content__title">Aquí, <span class="hero-content__title hero-content__title--accent">tu sonrisa</span> es nuestra prioridad</h1>
+      <p class="hero-content__paragraph">Nuestra pasión es cuidar de tu sonrisa. En Cedens, cada tratamiento está adaptado a tus necesidades específicas, asegurando resultados que no solo mejorarán tu salud dental, sino también tu bienestar general.</p>
       <Button label="Agenda una cita" variant="secondary" />
     </div>
-    <img src="/img/hero-image.png" alt="Imagen de una odontóloga sosteniendo sus herramientas">
+    <img class="hero-content__img" src="/img/hero-image.png" alt="Imagen de una odontóloga sosteniendo sus herramientas">
   </article>
 
 </section>
 
 <style>
-  section {
+  .container {
+    padding: 80px 64px;
     background-color: var(--color-primary);
-
   }
-  article {
+  .hero-content {
     display: flex;
     justify-content: space-between;
     background-color: var(--color-primary);
-    padding: 16px 64px;
     align-items: center;
     margin: 0 auto;
     max-width: 1440px;
   }
-  div {
-    max-width: 620px;
+  .hero-content__title {
+    font-size: var(--text-6xl-font-size);
+    line-height: 5rem;
+    color: var(--text-color-secondary);
+  }
+  .hero-content__title--accent {
+    color: var(--color-accent);
+  }
+  .hero-content__container {
+    max-width: 610px;
     flex-grow: 1;
     flex-shrink: 1;
   }
-  h1 {
-    font-size: var(--text-6xl);
-    color: var(--text-color-secondary);
-  }
-  span {
-    color: var(--color-accent);
-  }
-  p {
-    font-size: var(--text-base);
+  .hero-content__paragraph {
+    font-size: var(--text-lg-font-size);
+    line-height: var(--text-lg-line-height);
     color: var(--text-color-secondary);
     margin-block: 32px;
   }
-  img {
+  .hero-content__img {
     width: 340px;
     height: 430px;
     flex-shrink: 0;

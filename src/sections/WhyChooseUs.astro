@@ -1,58 +1,74 @@
 ---
-  const whyChooseUsItems = [
-    {
-      title: 'Experiencia comprobada',
-      description: 'Más de 15 años de experiencia en proporcionar cuidados dentales de calidad.',
-      icon: 'clock'
-    },
-    {
-      title: 'Experiencia comprobada',
-      description: 'Más de 15 años de experiencia en proporcionar cuidados dentales de calidad.',
-      icon: 'clock'
-    },
-    {
-      title: 'Experiencia comprobada',
-      description: 'Más de 15 años de experiencia en proporcionar cuidados dentales de calidad.',
-      icon: 'clock'
-    },
-    {
-      title: 'Experiencia comprobada',
-      description: 'Más de 15 años de experiencia en proporcionar cuidados dentales de calidad.',
-      icon: 'clock'
-    },
-    {
-      title: 'Experiencia comprobada',
-      description: 'Más de 15 años de experiencia en proporcionar cuidados dentales de calidad.',
-      icon: 'clock'
-    },
-    {
-      title: 'Experiencia comprobada',
-      description: 'Más de 15 años de experiencia en proporcionar cuidados dentales de calidad.',
-      icon: 'clock'
-    },
-  ];
+import WhyChooseUsItem from "@/components/WhyChooseUsItem.astro";
+import ClockShieldIcon from '@/icons/ClockShield.astro';
+import HeartIcon from '@/icons/Heart.astro';
+import ClipboardCheckIcon from '@/icons/ClipboardCheck.astro';
+import MoodSmileIcon from '@/icons/MoodSmile.astro';
+import CalendarMonthIcon from '@/icons/CalendarMonth.astro';
+import CashIcon from '@/icons/Cash.astro';
 ---
 
-<section>
-  <h2>¿Por qué <span>escogernos</span>?</h2>
+<section class="why-choose-us-section">
+  <h2 class="why-choose-us-section__title">¿Por qué <span class="why-choose-us-section__title--accent">escogernos</span>?</h2>
+  <ul class="why-choose-us-section__list">
+      <WhyChooseUsItem
+        title="Experiencia comprobada"
+        description="Más de 15 años de experiencia en proporcionar cuidados dentales de calidad."
+      >
+        <ClockShieldIcon />
+      </WhyChooseUsItem>
 
-    <article>
-      {
-        whyChooseUsItems.map(({ title, description }) => (
-        <div>
-          <h3>{ title }</h3>
-          <p>{ description }</p>
-        </div>
-        ))
-      }
-    </article>
+      <WhyChooseUsItem
+        title="Atención personalizada"
+        description="Cada plan de tratamiento es personalizado para satisfacer tus necesidades y expectativas únicas."
+      >
+        <HeartIcon />
+      </WhyChooseUsItem>
+
+      <WhyChooseUsItem
+        title="Servicio integral"
+        description="Ofrecemos todos los servicios de salud oral de forma integral en un mismo lugar."
+      >
+        <ClipboardCheckIcon />
+      </WhyChooseUsItem>
+
+      <WhyChooseUsItem
+        title="Satisfacción del paciente"
+        description="Estamos comprometidos con la excelencia, nuestra prioridad es tu completa satisfacción."
+      >
+        <MoodSmileIcon />
+      </WhyChooseUsItem>
+
+      <WhyChooseUsItem
+        title="Horarios flexibles"
+        description="Ofrecemos horarios extendidos entre semana y citas los sábados para adaptarnos a tu vida ocupada."
+      >
+        <CalendarMonthIcon />
+      </WhyChooseUsItem>
+
+      <WhyChooseUsItem
+        title="Métodos de pago"
+        description="Múltiples opciones de transferencia para tu facilidad de pago."
+      >
+      <CashIcon />
+    </WhyChooseUsItem>
+  </ul>
 </section>
 
 <style>
-  section {
+  .why-choose-us-section {
     padding: 32px 64px;
   }
-  article {
+  .why-choose-us-section__title {
+    font-size: var(--text-5xl-font-size);
+    line-height: var(--text-5xl-line-height);
+    font-weight: 600;
+    text-align: center;
+  }
+  .why-choose-us-section__title--accent {
+    color: var(--color-secondary);
+  }
+  .why-choose-us-section__list {
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
@@ -60,26 +76,4 @@
     max-width: 960px;
     margin: 0 auto;
   }
-  div {
-    max-width: 280px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  h2 {
-    font-size: var(--text-5xl);
-    font-weight: 600;
-    text-align: center;
-  }
-  span {
-    color: var(--color-secondary);
-  }
-  h3 {
-    font-weight: 600;
-    font-size: var(--text-xl);
-  }
-  p {
-    font-size: var(--text-base);
-  }
-
 </style>
