@@ -1,0 +1,47 @@
+---
+import ContactForm from "@/components/ContactForm.astro"
+---
+
+<section class="contact-section">
+  <h2 class="contact-section__title">Te contactamos</h2>
+
+  <article class="contact_section__form-container">
+    <p class="contact-section__paragraph">
+      Déjanos tus datos en este formulario para poder responder a todas tus preguntas y brindarte información detallada sobre nuestros tratamientos y servicios
+    </p>
+    <ContactForm />
+  </article>
+</section>
+
+<style>
+  .contact-section {
+    padding: 32px;
+  }
+  .contact-section__title {
+    margin-bottom: 32px;
+    font-size: var(--text-3xl-font-size);
+    line-height: var(--text-3xl-line-height);
+    font-weight: 600;
+  }
+
+  .contact-section__paragraph {
+    font-size: var(--text-xl-font-size);
+    line-height: var(--text-xl-line-height);
+    color: var(--text-color-primary);
+    margin-bottom: 24px;
+  }
+
+  .contact_section__form-container {
+    max-width: 560px;
+  }
+
+  @media (min-width: 960px) {
+    .contact-section {
+      padding: 64px;
+    }
+    .contact-section__title {
+      font-size: var(--text-5xl-font-size);
+      line-height: var(--text-5xl-line-height);
+    }
+  }
+</style>

@@ -1,0 +1,27 @@
+---
+import Button from "./Button.astro"
+---
+
+<form class="form">
+  <input class="form__input" type="text" placeholder="Nombre *">
+  <input class="form__input" type="email" placeholder="Correo">
+  <input class="form__input" type="number" placeholder="Número de celular *">
+  <textarea class="form__input" id="story" name="story" rows="5" cols="33" placeholder="¿En qué te podemos ayudar?"></textarea>
+  <Button variant="secondary" label="Enviar"></Button>
+</form>
+
+<style>
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .form__input {
+    border: 1px solid var(--text-color-primary);
+    border-radius: 4px;
+    padding: 10px
+  }
+  .form__input::placeholder {
+    font-size: var(--text-lg-font-size);
+  }
+</style>
