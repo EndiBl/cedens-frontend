@@ -31,6 +31,25 @@ const { title } = Astro.props;
 		</footer>
 	</body>
 </html>
+
+<script>
+
+	document.addEventListener("DOMContentLoaded", () => {
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('is-visible');
+				}
+			});
+		}, { threshold: 0.5 });
+	
+		const elements = document.querySelectorAll('h1, h2, h3, h4, img, p, span, a, ul, article, button');
+		elements.forEach(element => {
+			observer.observe(element);
+		});
+	});
+	</script>
+
 <style is:global>
 	:root {
 		--color-primary: #2F7DFD;
@@ -127,5 +146,31 @@ const { title } = Astro.props;
 	}
 	p {
 		text-wrap: pretty;
+	}
+
+
+	h1, h2, h3, h4, h5, h6, p, img, article, span, ul, a, button {
+		opacity: 0;
+  	transition: opacity 1s ease-out, transform 1s ease-out;
+	}
+
+
+	@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+	.is-visible {
+  	animation: fadeIn 1s forwards;
+	}
+
+	footer {
+		padding: 32px;
 	}
 </style>
