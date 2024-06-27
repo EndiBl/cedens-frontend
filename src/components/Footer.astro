@@ -1,0 +1,78 @@
+---
+import MapSearchIcon from '@/icons/MapSearch.astro';
+import PhoneIcon from '@/icons/Phone.astro';
+import InstagramIcon from '@/icons/Instagram.astro';
+import FacebookIcon from '@/icons/Facebook.astro';
+import CalendarMonthIcon from '@/icons/CalendarMonth.astro';
+---
+
+<h2 class="footer__title">Cedens S.A.S</h2>
+<p class="footer__paragraph">Consultorio odontológico</p>
+<div class="container">
+  <article class="item">
+    <MapSearchIcon />
+    <div class="item__container">
+      <span class="item__text">Calle 33 #42b-06, Torre Sur piso 11 consultorio 1114</span>
+      <span class="item__text">Centro Comercial Sandiego</span>
+      <span class="item__text">Medellín, Colombia</span>
+      <span class="item__text">+57 3008142057</span>
+    </div>
+  </article>
+
+  <div>
+    <article class="item">
+      <CalendarMonthIcon />
+      <div class="item__container">
+        <span class="item__text">De lunes a viernes 8:00 a.m. a 6:00p.m.
+          Sábados 8:00 a.m. a 1:00p.m.</span>
+        <span class="item__text">Sábados 8:00 a.m. a 1:00p.m.</span>
+      </div>
+    </article>
+    <article class="item">
+      <PhoneIcon />
+      <div class="item__container">
+        <span class="item__text">+57 3008142057</span>
+      </div>
+    </article>
+  </div>
+  
+</div>
+
+<style>
+  .footer__title {
+    font-size: var(--text-2xl-font-size);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .footer__paragraph {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .container {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: var(--text-base-font-size);
+    line-height: var(--text-base-line-height);
+    color: var(--text-primary-color);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .item {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .item > :first-child {
+    flex-shrink: 0;
+  }
+  .item__container {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 300px;
+    flex-grow: 1;
+  }
+</style>
