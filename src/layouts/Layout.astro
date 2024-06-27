@@ -49,7 +49,7 @@ const { title } = Astro.props;
 			});
 		}, { threshold: 0.3 });
 	
-		const elements = document.querySelectorAll('h1, h2, h3, h4, img, p, span, a, ul, article, button, li');
+		const elements = document.querySelectorAll('h1, h2, h3, h4, img, p, span, a, article, button, li, svg');
 		elements.forEach(element => {
 			observer.observe(element);
 		});
@@ -155,9 +155,9 @@ const { title } = Astro.props;
 	}
 
 
-	h1, h2, h3, h4, h5, h6, p, img, article, span, ul, a, button, li {
+	h1, h2, h3, h4, h5, h6, p, img, article, span, a, button, li, svg {
 		opacity: 0;
-  	transition: opacity 1s ease-out, transform 1s ease-out;
+  	transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 	}
 
 
