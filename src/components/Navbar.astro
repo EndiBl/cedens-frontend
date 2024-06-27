@@ -1,4 +1,5 @@
 ---
+import MenuIcon from "@/icons/Menu.astro";
 import Button from "./Button.astro";
 
   const navbarElements = [
@@ -25,6 +26,9 @@ import Button from "./Button.astro";
     <div class="button">
       <Button class:list={ ['button'] } label="Agenda una cita" variant="primary" />
     </div>
+    <div class="menu-button">
+      <MenuIcon />
+    </div>
   </nav>
 
 <style>
@@ -32,7 +36,7 @@ import Button from "./Button.astro";
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 64px;
+    padding: 8px 32px;
   }
   ul {
     display: flex;
@@ -58,12 +62,18 @@ import Button from "./Button.astro";
   }
 
   @media (min-width: 960px) {
+    nav {
+      padding: 8px 64px;
+    }
     ul {
       display: flex;
     }
     
     .button  {
       display: unset;
+    }
+    .menu-button {
+      display: none;
     }
   }
 </style>
