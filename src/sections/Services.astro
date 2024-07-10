@@ -1,0 +1,184 @@
+---
+import ServiceCard from "@/components/Servicios/ServiceCard.astro"
+import OrthodonticsIcon from "@/icons/Orthodontics.astro";
+import WandIcon from "@/icons/Wand.astro";
+import TeethIcon from "@/icons/Teeth.astro";
+
+const services = [
+  {
+    id: '1',
+    name: 'Ortodoncia',
+    description: 'Ofrecemos soluciones personalizadas para alinear tus dientes y mejorar tu mordida, utilizando técnicas modernas como brackets y alineadores invisibles que aseguran comodidad y eficacia.',
+    Icon: OrthodonticsIcon,
+  },
+  {
+    id: '2',
+    name: 'Periodoncia',
+    description: 'Especializados en la salud de tus encías, tratamos enfermedades periodontales para prevenir la pérdida de dientes, utilizando terapias avanzadas y mínimamente invasivas.',
+    Icon: TeethIcon,
+  },
+  {
+    id: '3',
+    name: 'Sedación',
+    description: 'Ofrecemos opciones de sedación para garantizar que tus tratamientos dentales sean lo más cómodos y libres de estrés posible, permitiéndote relajarte completamente durante nuestros procedimientos.',
+    Icon: WandIcon,
+  },
+  {
+    id: '4',
+    name: 'Diseños de sonrisa',
+    description: 'Mediante el uso de técnicas avanzadas como carillas, blanqueamiento y contorneado dental, creamos una sonrisa que refleje tu esencia. Este proceso es colaborativo y ajustado a tus expectativas y necesidades estéticas.',
+    Icon: WandIcon,
+  },
+  {
+    id: '5',
+    name: 'Odontopediatría',
+    description: 'Cuidamos la salud bucal de los más pequeños en un ambiente amigable y seguro, enfocándonos en la prevención y tratamiento de caries, así como en la educación de hábitos saludables.',
+    Icon: WandIcon,
+  },
+  {
+    id: '6',
+    name: 'Endodoncia',
+    description: 'Nos especializamos en el tratamiento de problemas relacionados con la pulpa dental y las raíces del diente, preservando así la salud y la estructura natural de tus dientes.',
+    Icon: WandIcon,
+  },
+  {
+    id: '7',
+    name: 'Cirugía Oral',
+    description: 'Realizamos procedimientos quirúrgicos para tratar diversas afecciones bucales, desde extracciones de cordales hasta patologías bucales, con técnicas seguras y efectivas.',
+    Icon: WandIcon,
+  },
+  {
+    id: '8',
+    name: 'Ortopedia',
+    description: 'Corregimos las irregularidades en la posición de los dientes y la mandíbula en niños y adolescentes. Trabajamos para mejorar no solo la estética de la sonrisa, sino también la función masticatoria y la salud oral a largo plazo.',
+    Icon: WandIcon,
+  },
+  {
+    id: '9',
+    name: 'Implantología',
+    description: 'Los implantes dentales ofrecen una solución duradera y estética para reemplazar dientes perdidos. Esta técnica no solo mejora la funcionalidad de la boca, sino que también refuerza la confianza en tu sonrisa.',
+    Icon: WandIcon,
+  },
+  {
+    id: '10',
+    name: 'Rehabilitación Oral',
+    description: 'Restauramos la funcionalidad y estética de tu sonrisa mediante tratamientos avanzados como coronas, puentes y prótesis dentales, garantizando resultados duraderos y naturales.',
+    Icon: WandIcon,
+  }
+];
+---
+
+<section class="services">
+  <h1 class="services__title">Nuestros servicios</h1>
+  {services.map(service => (
+    <ServiceCard
+      class={'card'+service.id}
+      service={service}
+    />
+  ))}
+</section>
+
+<style>
+  .services {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-rows: repeat(3, 200px); */
+    gap: 16px;
+    position: relative;
+    padding: 32px;
+    margin: 0 auto;
+  }
+
+  .services__title {
+    font-size: var(--text-3xl-font-size);
+    line-height: var(--text-3xl-line-height);
+  }
+
+  @media (min-width: 960px) {
+    .services {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 200px);
+      gap: 4px;
+      padding: 80px;
+    }
+    .services__title {
+      font-size: var(--text-4xl-font-size);
+      line-height: var(--text-4xl-line-height);
+    }
+    .card4 {
+      grid-column: 1 / 3;
+      grid-row: 2 / 3;
+    }
+    .card5 {
+      grid-column: 3 / 4;
+      grid-row: 2 / 4;
+    }
+    .card7 {
+      grid-column: 1 / 2;
+      grid-row: 3 / 5
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .services {
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(3, 200px);
+      gap: 4px;
+      position: relative;
+      max-width: 1440px;
+    }
+    .services__title {
+      font-size: var(--text-6xl-font-size);
+      line-height: var(--text-6xl-line-height);
+    }
+    .card1 {
+      grid-column: 3 / 4;
+      grid-row: 1 / 2;
+    }
+
+    .card2 {
+      grid-column: 4 / 5;
+      grid-row: 1 / 2;
+    }
+
+    .card3 {
+      grid-column: 5 / 6;
+      grid-row: 1 / 2;
+    }
+
+    .card4 {
+      grid-column: 1 / 3;
+      grid-row: 2 / 3;
+    }
+
+    .card5 {
+      grid-column: 3 / 4;
+      grid-row: 2 / 4;
+    }
+
+    .card6 {
+      grid-column: 4 / 5;
+      grid-row: 2 / 3;
+    }
+
+    .card7 {
+      grid-column: 5 / 6;
+      grid-row: 2 / 3;
+    }
+
+    .card8 {
+      grid-column: 1 / 2;
+      grid-row: 3 / 4;
+    }
+
+    .card9 {
+      grid-column: 2 / 3;
+      grid-row: 3 / 4;
+    }
+
+    .card10 {
+      grid-column: 4 / 6;
+      grid-row: 3 / 4;
+    }
+  }
+</style>
