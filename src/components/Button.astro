@@ -1,13 +1,13 @@
 ---
   interface Props {
     label: string,
-    variant: 'primary' | 'secondary'
+    variant: 'primary' | 'secondary',
   }
 
   const { label, variant } = Astro.props;
 ---
 
-<button class={variant}>{label}</button>
+<button class={variant}>{label} <slot /></button>
 
 <style>
   button {
@@ -16,6 +16,10 @@
     font-size: var(--text-base);
     font-family: inherit;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
   }
   .primary {
     background-color: var(--color-primary);

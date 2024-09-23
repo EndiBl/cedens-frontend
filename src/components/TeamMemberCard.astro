@@ -1,12 +1,9 @@
 ---
 import type { TeamMember } from '@/types/TeamMember';
 
-interface Props {
-  teamMember: TeamMember
-}
+interface Props extends TeamMember {};
 
-const { teamMember } = Astro.props;
-const { name, imageUrl} = teamMember;
+const { name, imageUrl } = Astro.props;
 ---
 
 <article class="team-member">

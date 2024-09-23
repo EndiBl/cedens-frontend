@@ -4,12 +4,9 @@ import StarFilledIcon from '@/icons/StarFilled.astro';
 import StarHalfFilledIcon from '@/icons/StarHalfFilled.astro';
 import StarIcon from '@/icons/Star.astro';
 
-interface Props {
-  testimonial: Testimonial
-}
+interface Props extends Testimonial {};
 
-const { testimonial } = Astro.props;
-const { author, content, imageUrl, starsNumber } = testimonial;
+const { author, content, imageUrl, starsNumber } = Astro.props;
 
 const fullStars = Math.floor(starsNumber);
 const hasHalfStar = starsNumber % 1 >= 0.5;

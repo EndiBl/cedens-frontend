@@ -1,5 +1,6 @@
 ---
 import Button from '@/components/Button.astro';
+import WhatsappIcon from '@/icons/Whatsapp.astro';
 
 interface Props {
   class: string,
@@ -25,7 +26,7 @@ const { name, description, Icon } = service;
     <div class="card__content">
         <p>{ description }</p>
     </div>
-    <Button label='Más información' variant='primary' />
+    <Button label='Más información' variant='primary'><WhatsappIcon /></Button>
   </div>
 </article>
 
@@ -80,6 +81,7 @@ const { name, description, Icon } = service;
   .card__face {
     height: 200px;
     transition: 0.5s;
+    border-radius: 20px;
   }
 
   .card__face--type1 {
