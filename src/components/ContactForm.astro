@@ -1,13 +1,80 @@
 ---
-import Button from "./Button.astro"
+import Button from "./Button.astro";
+import type { CustomerContact } from "@/types";
+import Loader from "./Loader.astro";
+
+const apiUrl = "http://localhost:8000";
+const errors = { name: "", email: "", phone_number: "", description: "" };
+let formMessage = { text: "", success: false };
+let isLoadingCreateCustomerContact = false;
+
+// function isValidEmail(email: string | null): boolean {
+//   if (email === null) return false;
+//   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//   return emailRegex.test(email);
+// }
+
+
+
+// if (Astro.request.method === "POST") {
+//   try {
+//     const data = await Astro.request.formData();
+//     const name = (data.get("name") as string) ?? "";
+//     const email = (data.get("email") as string | null);
+//     const phone_number = (data.get("phone_number") as string) ?? "";
+//     const description = (data.get("description") as string | null);
+
+//     if (typeof name !== "string" || name.length < 1) {
+//       errors.name += "Por favor, ingresa tu nombre. ";
+//     } else if (name.length > 50) {
+//       errors.name += "El nombre no debe tener más de 50 caracteres. ";
+//     }
+
+//     if (typeof email !== "string" || !isValidEmail(email)) {
+//       errors.email += "Correo electrónico inválido. ";
+//     }
+//     if (typeof phone_number !== "string" || phone_number.length !== 10) {
+//       errors.phone_number += "El número de Whatsapp debe tener 10 caracteres. ";
+//     }
+//     const hasErrors = Object.values(errors).some(msg => msg);
+//     if (!hasErrors) {
+//       const result = await createCustomerContact({ name, email, phone_number, description });
+//       formMessage = result.success
+//         ? { text: result.message, success: true }
+//         : { text: result.message, success: false };
+//     } else {
+//       formMessage = { text: "Por favor corrige los errores del formulario.", success: false };
+//     }
+//   } catch (error) {
+//     if (error instanceof Error) {
+//       console.error(error.message);
+//       formMessage = { text: "Ocurrió un error inesperado.", success: false };
+//     } else {
+//       console.error('Error desconocido:', error);
+//       formMessage = { text: "Ocurrió un error desconocido.", success: false };
+//     }
+//   }
+// }
 ---
 
-<form class="form">
-  <input class="form__input" type="text" placeholder="Nombre *">
-  <input class="form__input" type="email" placeholder="Correo">
-  <input class="form__input" type="number" placeholder="Número de celular *">
-  <textarea class="form__input" id="story" name="story" rows="5" cols="33" placeholder="¿En qué te podemos ayudar?"></textarea>
-  <Button variant="secondary" label="Enviar"></Button>
+<form class="form" method="POST" id="customerContactForm">
+  <div>
+    <input class="form__input" type="text" name="name" placeholder="Nombre*" required />
+    { errors.name && <small class="form__input-error">{ errors.name }</small> }
+  </div>
+  <div>
+    <input class="form__input" type="email" name="email" placeholder="Correo electrónico" />
+    { errors.email && <small class="form__input-error">{ errors.email }</small> }
+  </div>
+  <div>
+    <input class="form__input" type="text" name="phone_number" placeholder="Número de Whatsapp*" required />
+    { errors.phone_number && <small class="form__input-error">{ errors.phone_number }</small> }
+  </div>
+  <div>
+    <textarea class="form__input" name="description" rows="5" cols="33" placeholder="¿En qué te podemos ayudar?"></textarea>
+    { errors.description && <small class="form__input-error">{ errors.description }</small> }
+  </div>
+  { isLoadingCreateCustomerContact ? <Loader /> : <Button variant="secondary" label="Enviar" /> }
 </form>
 
 <style>
@@ -19,9 +86,127 @@ import Button from "./Button.astro"
   .form__input {
     border: 1px solid var(--text-color-primary);
     border-radius: 4px;
-    padding: 10px
+    padding: 10px;
+    width: 100%;
   }
   .form__input::placeholder {
     font-size: var(--text-lg-font-size);
   }
+  .form__input-error {
+    color: var(--color-danger);
+    font-size: var(--text-sm-font-size);
+  }
 </style>
+
+<script>
+  import type { CustomerContact } from "@/types";
+
+  const apiUrl = 'http://localhost:8000'
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('customerContactForm') as HTMLFormElement;
+    let errors = {};
+
+    if (!form) throw new Error("Failed to find form on the page.");
+
+    const makeFormLoading = () => {
+      //
+    }
+
+    const stopFormFromLoading = () => {
+      //
+    };
+
+
+    const isValidEmail = (email: string | null) => {
+      if (email === null) return false;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+    
+    async function createCustomerContact(customerContact: CustomerContact) {
+      makeFormLoading();
+
+      const { name, email, phone_number, description } = customerContact;
+      try {
+        const response = await fetch(`${ apiUrl }/customer_contacts/create_customer_contact`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            phone_number,
+            description,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Error en la solicitud POST al servidor');
+        }
+
+        const data = await response.json();
+        
+        stopFormFromLoading();
+        return { success: true, message: data.message || 'Contacto creado exitosamente' };
+      } catch (error) {
+        console.error('Error al crear contacto:', error);
+        stopFormFromLoading();
+        if (error instanceof Error) {
+          return { success: false, message: error.message || 'Error al crear contacto' };
+        } else {
+          return { success: false, message: 'Error desconocido al crear contacto' };
+        }
+      }
+    }
+
+    async function submitForm() {
+      if (!form) return;
+
+      try {
+        const data = new FormData(form);
+        const name = (data.get("name") as string) ?? "";
+        const email = (data.get("email") as string | null);
+        const phone_number = (data.get("phone_number") as string) ?? "";
+        const description = (data.get("description") as string | null);
+
+        if (typeof name !== "string" || name.length < 1) {
+          // TODO: setErrors()
+          // errors.name += "Por favor, ingresa tu nombre. ";
+        } else if (name.length > 50) {
+          // errors.name += "El nombre no debe tener más de 50 caracteres. ";
+        }
+
+        if (typeof email !== "string" || !isValidEmail(email)) {
+          // errors.email += "Correo electrónico inválido. ";
+        }
+        if (typeof phone_number !== "string" || phone_number.length !== 10) {
+          // errors.phone_number += "El número de Whatsapp debe tener 10 caracteres. ";
+        }
+        const hasErrors = Object.values(errors).some(msg => msg);
+        if (!hasErrors) {
+          const result = await createCustomerContact({ name, email, phone_number, description });
+          // formMessage = result.success
+          //   ? { text: result.message, success: true }
+          //   : { text: result.message, success: false };
+        } else {
+          // formMessage = { text: "Por favor corrige los errores del formulario.", success: false };
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error(error.message);
+          // formMessage = { text: "Ocurrió un error inesperado.", success: false };
+        } else {
+          console.error('Error desconocido:', error);
+          // formMessage = { text: "Ocurrió un error desconocido.", success: false };
+        }
+      }
+    }
+
+    form.addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      void submitForm();
+    });
+  });
+</script>

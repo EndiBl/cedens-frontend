@@ -1,0 +1,27 @@
+---
+import type { Smile } from '@/types/Smile';
+
+interface Props extends Smile {};
+
+const { description, title, url } = Astro.props;
+
+---
+<article class="team-member">
+  <img src={ url } alt={ `Foto de ${ title }` }>
+  <h3 class="team-member__name">{ title }</h3>
+  <span>{description}</span>
+</article>
+
+<style>
+  .team-member {
+    background-color: var(--color-tertiary);
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .team-member__name {
+    text-align: center;
+  }
+</style>

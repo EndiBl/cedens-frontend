@@ -1,0 +1,20 @@
+---
+import Carousel from "@/components/Carousel.astro";
+import GalleryCard from "@/components/GaleriaDeSonrisas/GalleryCard.astro";
+import Layout from "@/layouts/Layout.astro"
+import Services from "@/sections/Services.astro";
+
+const smiles = [
+  {
+    title: 'Antes y Después',
+    description: 'Observa los resultados reales y la diferencia antes y después de nuestro tratamiento.',
+    url: '/img/smiles/smile1.png'
+  }
+]
+---
+
+<Layout title="Cedens">
+	<main>
+    <Carousel slides={smiles} slideComponent={GalleryCard} navigationColor="var(--color-tertiary)" />
+	</main>
+</Layout>

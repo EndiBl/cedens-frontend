@@ -1,4 +1,4 @@
 export interface TeamMember {
-  name: string,
-  imageUrl: string,
+  name: string;
+  imageUrl: string;
 }
